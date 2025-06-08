@@ -1,0 +1,70 @@
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffdbdb;
+        }
+
+        .main {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffefef;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(147, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        /* Login and Register Buttons */
+        .btn {
+            width: 200px;
+            padding: 12px 20px;
+            margin-bottom: 15px;
+            display: inline-block;
+            justify-content: center;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            border-radius: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-outline-info {
+            background: linear-gradient(to right, #ffd0e4, #ff9a9d);
+            border: 0px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-outline-info:hover {
+            background: linear-gradient(to right, #ffa7d5, #ff9194);
+        }
+
+        .btn i {
+            margin-right: 10px;
+            color: white;
+        }
+
+        /* Inspira Logo and Tagline */
+        .inspira-logo {
+            display: inline-block;
+            width: 500px;
+            height: 300px;
+            margin-bottom: 60px;
+        }
+
+        .inspira-tagline {
+            font-size: 16px;
+            color: #b07a7a;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
