@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create Pin{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/create_pin.css' %}">
+<div class="main">
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Створити новий Пін</h1>
+        <label for="title">Назва</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="desc">Опис</label>
+        <input type="text" id="desc" name="desc">
+
+        <label for="pic">Зображення</label>
+        <input type="file" id="pic" name="pic" accept="image/*">
+
+        <button type="submit">Створити</button>
+    </form>
+</div>
+{% endblock %}

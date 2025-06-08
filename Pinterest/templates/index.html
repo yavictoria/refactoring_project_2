@@ -1,0 +1,25 @@
+{% load socialaccount %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspira - Your Personal Inspiration Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="main">
+        <img src="{% static 'inspira_logo.png' %}" alt="" class="inspira-logo">
+
+        <a href="{% url 'login' %}" class="btn btn-outline-info">Log in</a>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-info">
+            <i class="fab fa-google"></i>Login with Google
+        </a>
+        <p class="inspira-tagline">First time here?</p>
+        <a href="{% url 'register' %}" class="btn btn-outline-info">Register</a>
+    </div>
+</body>
+</html>

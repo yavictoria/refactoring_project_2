@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pin Detail{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/pin_detail.css' %}">
+<div class="pin-detail">
+    {% if pin.pic %}
+        <img src="{{ pin.pic.url }}" alt="{{ pin.title }}" class="pin-image">
+    {% else %}
+        <img src="{% static 'images/default_pin.jpg' %}" alt="no image" class="pin-image">
+    {% endif %}
+    <div class="pin-info">
+        <h1>{{ pin.title }}</h1>
+        <p>{{ pin.desc }}</p>
+        <div class="user-info">
+            <img src="{% if pin.user.pfp %}{{ pin.user.pfp.url }}{% else %}{% static 'images/default_pfp.jpg' %}{% endif %}" alt="{{ pin.user.username }}" class="user-avatar">
+            <div class="user-details">
+                <h2>{{ pin.user.name }}</h2>
+                <p>@{{ pin.user.username }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

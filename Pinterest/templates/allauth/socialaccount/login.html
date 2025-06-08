@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In Via Google{% endblock %}
+
+{% block content %}
+<h1>Sign In Via Google</h1>
+<p>You are about to sign in using a third-party account from Google.</p>
+<form method="post" action="{% provider_login_url 'google' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-info">Continue</button>
+</form>
+<p>
+    <a href="{% url 'account_login' %}">Back to login</a>
+</p>
+{% endblock %}

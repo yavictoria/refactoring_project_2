@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <!-- Верхній хедер -->
+    <div class="header">
+        <!-- Логотип -->
+        <div class="logo">
+            <a href="/mainpage/" style="text-decoration: none;">Inspira</a>
+        </div>
+
+        <!-- Поле пошуку -->
+        <div class="search-bar">
+            <form method="get" action="{% url 'mainpage' %}">
+                <input type="text" name="q" placeholder="Search" value="{{ query }}">
+            </form>
+        </div>
+
+        <!-- Кнопка "Створити" -->
+        <div class="actions">
+            <a href="/create_pin/" class="btn-create">Створити</a>
+        </div>
+
+        <!-- Аватар користувача -->
+        <div class="profile">
+            <img class="profile-img" src="{% if user.pfp %}{{ user.pfp.url }}{% else %}{% static 'images/default_pfp.jpg' %}{% endif %}" alt="Profile">
+            <i class="fas fa-chevron-down"></i>
+            <div class="dropdown-content">
+                <a href="/userprofile/">Мій профіль</a>
+                <a href="/myboards/">Мої дошки</a>
+                <a href="/mypins/">Мої піни</a>
+                <a href="/logout/">Вихід</a>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <script>
+        // Випадаюче меню для профілю
+        document.addEventListener('DOMContentLoaded', function() {
+            var profile = document.querySelector('.profile'); // Елемент профілю
+            var dropdown = document.querySelector('.dropdown-content'); // Випадаюче меню
+
+        profile.addEventListener('click', function() {
+            dropdown.classList.toggle('show'); // Перемикання класу "show"
+        });
+
+    // Закриття меню, якщо клікнув поза профілем
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-img') && !event.target.matches('.fa-chevron-down')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        });
+    </script>

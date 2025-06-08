@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/userprofile.css' %}">
+
+<div class="main" id="profileView">
+    <div class="profile-header">
+        <img src="{% if user.pfp %}{{ user.pfp.url }}{% else %}{% static 'images/default_pfp.jpg' %}{% endif %}" alt="User Avatar" class="profile-avatar">
+        <h2 class="name">{{ user.name }}</h2>
+        <p class="username">@{{ user.username }}</p>
+        <p>{{ user.desc }}</p>
+        <div class="profile-actions">
+            <button class="btn btn-outline-info" onclick="showEditForm()">Редагувати профіль</button>
+            <button class="btn btn-outline-info" onclick="viewBoards()">Мої дошки</button>
+        </div>
+    </div>
+</div>
+
+<div class="main" id="editProfileForm" style="display: none;">
+    <h1>Редагувати профіль</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Ім'я</label>
+        <input type="text" id="name" name="name" value="{{ user.name }}" required>
+
+        <label for="desc">Опис</label>
+        <input type="text" id="desc" name="desc" value="{{ user.desc }}" required>
+
+        <label for="pfp">Фото профілю</label>
+        <input type="file" id="pfp" name="pfp" accept="image/*">
+
+        <button type="submit">Зберегти зміни</button>
+    </form>
+</div>
+
+<script>
+    function showEditForm() {
+        document.getElementById('profileView').style.display = 'none';
+        document.getElementById('editProfileForm').style.display = 'block';
+    }
+
+    function viewBoards() {
+        // Redirect to the user's boards page
+        window.location.href = '/my-boards';
+    }
+</script>
+{% endblock %}
